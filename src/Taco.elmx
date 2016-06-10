@@ -1,0 +1,6 @@
+module Taco exposing (Model)
+
+type alias Model =
+  { nada: String
+  , potato: Int
+  }

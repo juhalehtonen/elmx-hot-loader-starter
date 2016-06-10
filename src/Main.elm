@@ -4,6 +4,7 @@ import Html exposing (div, button, text, h2, input, ul, li)
 import Html.App exposing (program)
 import Html.Events exposing (onClick, onInput)
 import Html.Attributes exposing (..)
+import Taco
 import Time
 
 
@@ -19,16 +20,17 @@ main =
 -- MODEL
 
 
-type alias Model = 
+type alias Model =
   { count : Int
   , elapsed : Int
   , alertText : String
   , logs : List String
+  , taco : Taco.Model
   }
 
 init : (Model, Cmd msg)
 init =
-  (Model 0 0 "It works!" [], Cmd.none)
+  (Model 0 0 "It works!" [] (Taco.Model "hello" 5), Cmd.none)
 
 
 -- UPDATE
