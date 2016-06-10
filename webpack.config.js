@@ -23,8 +23,8 @@ module.exports = {
         loader: 'elmx-webpack-preloader',
         include: [path.join(__dirname, "src")],
         query: {
-          sourceDirectories: ['src/'],
-          outputDirectory: 'elm-stuff/.tmp/'
+          sourceDirectories: [path.join(__dirname, "src")],
+          outputDirectory: path.join(__dirname, 'elm-stuff/.tmp/')
         }
       }
     ],
@@ -35,18 +35,17 @@ module.exports = {
         loader: 'file?name=[name].[ext]'
       },
       {
-        test: /\.elm$/,
-        exclude: [/elm-stuff/, /node_modules/],
+        test: /\.elmx?$/,
         loader: 'elm-hot!elm-webpack',
-        // include: [path.join(__dirname, "src"), path.join(__dirname, "elm-stuff/.tmp")]
+        include: [path.join(__dirname, "src"), path.join(__dirname, "elm-stuff/.tmp")]
       }
     ],
 
-    noParse: /\.elm$/
+    noParse: /\.elmx?$/
   },
 
   plugins: [
-    new CleanWebpackPlugin(['dist'], {
+    new CleanWebpackPlugin(['dist', 'elm-stuff/.tmp'], {
       root: __dirname,
       verbose: true,
       dry: false
