@@ -60,12 +60,14 @@ Be sure to change the contents of `elm-package.json` to reflect your project's i
 
 It works like any standard Elm project. You do not have to use the `Components` folder, it's there for demonstration purposes. Here's some PROTIPs:
 
-- Put your main Elm app code in `Main.elm`. Rename it to `Main.elmx` if you wan.
+- Put your main Elm app code in `Main.elmx`.
 - Put your ports and Elm initialization code in `index.js`.
 - Adjust any HTML in `index.html`.
 - Anything `*.elm` and `*.elmx` in the `src` folder will be compiled down to `index.js`. Organize as you prefer.
 
 See [`src/Components/Counter.elmx`](src/Components/Counter.elmx) for a demonstration of how to use `elmx`. The syntax is a little different than JSX, so be sure to study the [elmx README](https://github.com/pzavolinsky/elmx) if you haven't used it before. It's basically just HTML with some squiggly braces.
+
+`App.elm` is an entry point, there shouldn't be any need to change it unless you need `programWithFlags`.
 
 If you're curious, elmx assets are compiled to `elm-stuff/build-artifacts/elmx-compile`
 
