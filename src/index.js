@@ -1,9 +1,9 @@
 'use strict';
 
 require('./index.html');
-var Elm = require('./Main');
+var Elm = require('./App');
 
-var app = Elm.Main.fullscreen();
+var app = Elm.App.fullscreen();
 
 //interop
 app.ports.alert.subscribe(function(message) {
