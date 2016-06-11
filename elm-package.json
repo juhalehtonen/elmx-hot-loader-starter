@@ -5,7 +5,7 @@
     "license": "BSD3",
     "source-directories": [
         "./src",
-        "./elm-stuff/.tmp"
+        "./elm-stuff/build-artifacts/elmx-compile"
     ],
     "exposed-modules": [],
     "dependencies": {

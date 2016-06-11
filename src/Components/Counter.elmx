@@ -1,0 +1,41 @@
+module Components.Counter exposing (Model, update, view, Msg)
+
+import Html
+import Html.Attributes exposing (style)
+import Html.Events exposing (onClick)
+
+
+type alias Model = Int
+
+
+type Msg = Increment | Decrement
+
+
+update : Msg -> Model -> (Model, Cmd Msg)
+update msg model =
+  case msg of
+    Increment ->
+      ( model + 1 , Cmd.none)
+
+    Decrement ->
+      ( model - 1, Cmd.none)
+
+
+boxStyle : List ( String, String )
+boxStyle =
+  [ ("border", "1px solid #ccc")
+  , ("border-radius", "4px")
+  , ("padding", "10px")
+  , ("margin", "10px")
+  ]
+
+
+view : Model -> Html.Html Msg
+view model =
+  -- Here's a few different ways of using attributes and elements
+  <div {style boxStyle}>
+    <h2 style="background-color:gray">Counter</h2>
+    <button {onClick Decrement}>-</button>
+    {= (toString model) }
+    <button onClick={Increment}>+</button>
+  </div>

@@ -24,7 +24,7 @@ module.exports = {
         include: [path.join(__dirname, "src")],
         query: {
           sourceDirectories: [path.join(__dirname, "src")],
-          outputDirectory: path.join(__dirname, 'elm-stuff/.tmp/')
+          outputDirectory: path.join(__dirname, "elm-stuff/build-artifacts/elmx-compile")
         }
       }
     ],
@@ -37,7 +37,7 @@ module.exports = {
       {
         test: /\.elmx?$/,
         loader: 'elm-hot!elm-webpack',
-        include: [path.join(__dirname, "src"), path.join(__dirname, "elm-stuff/.tmp")]
+        include: [path.join(__dirname, "src"), path.join(__dirname, "elm-stuff/build-artifacts/elmx-compile")]
       }
     ],
 
@@ -45,7 +45,7 @@ module.exports = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(['dist', 'elm-stuff/.tmp'], {
+    new CleanWebpackPlugin(['dist', "elm-stuff/build-artifacts/elmx-compile"], {
       root: __dirname,
       verbose: true,
       dry: false
@@ -56,6 +56,7 @@ module.exports = {
   ],
 
   devServer: {
-    stats: 'errors-only'
+    stats: 'errors-only',
+    port: 8000,
   }
 };
