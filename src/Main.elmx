@@ -44,6 +44,7 @@ type Msg
   | ChangeAlertText String
   | Log String
 
+
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
@@ -95,20 +96,29 @@ boxStyle =
 
 view : Model -> Html.Html Msg
 view model =
-  div []
-    [ Html.App.map CounterUpdate <| Counter.view model.counter
-    , div [ style boxStyle ]
-        [ h2 [] [ text "Time.every second" ]
-        , text <| "elapsed seconds: " ++ (toString model.elapsed)
-        ]
-    , div [ style boxStyle ]
-        [ h2 [] [ text "Outgoing Port" ]
-        , input [ type' "text", value model.alertText, onInput ChangeAlertText ] []
-        , button [ onClick Alert ] [ text "call alert" ]
-        ]
-    , div [ style boxStyle ]
-        [ h2 [] [ text "Incoming Port" ]
-        , ul [] <|
-            List.map (\t -> li [] [ text t]) model.logs
-        ]
-    ]
+  let
+    counter = Html.App.map CounterUpdate <| Counter.view model.counter
+    logs = List.map (\t -> li [] [ text t]) model.logs
+  in
+    <div>
+      {counter}
+
+      <div {style boxStyle}>
+        <h2>Time.every second</h2>
+        elapsed seconds:
+        {= (toString model.elapsed) }
+      </div>
+
+      <div {style boxStyle}>
+        <h2>Outgoing Port</h2>
+        <input type="text" value={model.alertText} onInput={ChangeAlertText}>
+        <button onClick={Alert}>call alert</button>
+      </div>
+
+      <div {style boxStyle}>
+        <h2>Incoming Port</h2>
+        <ul>
+          <li>{:logs}</li>
+        <ul>
+      </div>
+    </div>
